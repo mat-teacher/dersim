@@ -13,12 +13,15 @@
 
         body {
             font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
         }
 
         /* Banner Ayarları */
         .banner {
             background-color: #4CAF50;
-            height: 15vh; /* Sayfanın %15'i kadar yükseklik */
+            height: 15vh;
             width: 100%; /* Genişliği otomatik */
             display: flex;
             justify-content: center;
@@ -27,11 +30,36 @@
             font-size: 2rem;
         }
 
-        /* Tablo Ayarları */
+        /* Ana tablo ayarları */
+        .main-container {
+            display: flex;
+            justify-content: space-between;
+            width: 90%; /* Sayfanın %90'ı kadar genişlik */
+            margin-top: 20px;
+        }
+
+        /* Yan tablolardaki resim ayarları */
+        .side-container {
+            width: 22%;
+            background-color: #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .side-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Ana tablo ayarları */
         .table-container {
-            margin: 20px auto;
             width: 50%; /* Sayfanın %50'si kadar genişlik */
             text-align: center;
+            background-color: #333; /* Daha koyu arka plan */
+            color: white;
+            padding: 20px;
         }
 
         .table-header {
@@ -54,7 +82,7 @@
 
         .content-list li a {
             text-decoration: none;
-            color: #333;
+            color: #fff; /* Beyaz yazı */
         }
 
         .content-list li a:hover {
@@ -69,67 +97,60 @@
         <h1>Site İndeksi</h1>
     </div>
 
-    <!-- Tablo -->
-    <div class="table-container">
-        <div class="table-header" onclick="toggleMenu('menu7a')">7A</div>
-        <ul id="menu7a" class="content-list">
-            <!-- Konu 1'den 15'e kadar menü -->
-            <li><a href="konu1.html">Konu 1</a></li>
-            <li><a href="konu2.html">Konu 2</a></li>
-            <li><a href="konu3.html">Konu 3</a></li>
-            <li><a href="konu4.html">Konu 4</a></li>
-            <li><a href="konu5.html">Konu 5</a></li>
-            <li><a href="konu6.html">Konu 6</a></li>
-            <li><a href="konu7.html">Konu 7</a></li>
-            <li><a href="konu8.html">Konu 8</a></li>
-            <li><a href="konu9.html">Konu 9</a></li>
-            <li><a href="konu10.html">Konu 10</a></li>
-            <li><a href="konu11.html">Konu 11</a></li>
-            <li><a href="konu12.html">Konu 12</a></li>
-            <li><a href="konu13.html">Konu 13</a></li>
-            <li><a href="konu14.html">Konu 14</a></li>
-            <li><a href="konu15.html">Konu 15</a></li>
-        </ul>
+    <!-- Ana Sayfa Yapısı -->
+    <div class="main-container">
+        <!-- Sol taraf -->
+        <div class="side-container">
+            <img src="resim1.jpg" alt="Resim 1">
+        </div>
 
-        <div class="table-header" onclick="toggleMenu('menu7b')">7B</div>
-        <ul id="menu7b" class="content-list">
-            <!-- Konu 1'den 15'e kadar menü -->
-            <li><a href="konu1.html">Konu 1</a></li>
-            <li><a href="konu2.html">Konu 2</a></li>
-            <li><a href="konu3.html">Konu 3</a></li>
-            <li><a href="konu4.html">Konu 4</a></li>
-            <li><a href="konu5.html">Konu 5</a></li>
-            <li><a href="konu6.html">Konu 6</a></li>
-            <li><a href="konu7.html">Konu 7</a></li>
-            <li><a href="konu8.html">Konu 8</a></li>
-            <li><a href="konu9.html">Konu 9</a></li>
-            <li><a href="konu10.html">Konu 10</a></li>
-            <li><a href="konu11.html">Konu 11</a></li>
-            <li><a href="konu12.html">Konu 12</a></li>
-            <li><a href="konu13.html">Konu 13</a></li>
-            <li><a href="konu14.html">Konu 14</a></li>
-            <li><a href="konu15.html">Konu 15</a></li>
-        </ul>
+        <!-- Orta Tablo -->
+        <div class="table-container">
+            <div class="table-header" onclick="toggleMenu('menu7a')">7A</div>
+            <ul id="menu7a" class="content-list">
+                <!-- Konu 1'den 15'e kadar menü -->
+                <li><a href="konu1.html">Konu 1</a></li>
+                <li><a href="konu2.html">Konu 2</a></li>
+                <li><a href="konu3.html">Konu 3</a></li>
+                <li><a href="konu4.html">Konu 4</a></li>
+                <li><a href="konu5.html">Konu 5</a></li>
+                <li><a href="konu6.html">Konu 6</a></li>
+                <li><a href="konu7.html">Konu 7</a></li>
+                <li><a href="konu8.html">Konu 8</a></li>
+                <li><a href="konu9.html">Konu 9</a></li>
+                <li><a href="konu10.html">Konu 10</a></li>
+                <li><a href="konu11.html">Konu 11</a></li>
+                <li><a href="konu12.html">Konu 12</a></li>
+                <li><a href="konu13.html">Konu 13</a></li>
+                <li><a href="konu14.html">Konu 14</a></li>
+                <li><a href="konu15.html">Konu 15</a></li>
+            </ul>
 
-        <div class="table-header" onclick="toggleMenu('menu8b')">8B</div>
-        <ul id="menu8b" class="content-list">
-            <!-- Konu 1'den 15'e kadar menü -->
-            <li><a href="konu1.html">Konu 1</a></li>
-            <li><a href="konu2.html">Konu 2</a></li>
-            <li><a href="konu3.html">Konu 3</a></li>
-            <li><a href="konu4.html">Konu 4</a></li>
-            <li><a href="konu5.html">Konu 5</a></li>
-            <li><a href="konu6.html">Konu 6</a></li>
-            <li><a href="konu7.html">Konu 7</a></li>
-            <li><a href="konu8.html">Konu 8</a></li>
-            <li><a href="konu9.html">Konu 9</a></li>
-            <li><a href="konu10.html">Konu 10</a></li>
-            <li><a href="konu11.html">Konu 11</a></li>
-            <li><a href="konu12.html">Konu 12</a></li>
-            <li><a href="konu13.html">Konu 13</a></li>
-            <li><a href="konu14.html">Konu 14</a></li>
-            <li><a href="konu15.html">Konu 15</a></li>
-        </ul>
+            <div class="table-header" onclick="toggleMenu('menu7b')">7B</div>
+            <ul id="menu7b" class="content-list">
+                <!-- Konu 1'den 15'e kadar menü -->
+                <li><a href="konu1.html">Konu 1</a></li>
+                <li><a href="konu2.html">Konu 2</a></li>
+                <li><a href="konu3.html">Konu 3</a></li>
+                <li><a href="konu4.html">Konu 4</a></li>
+                <li><a href="konu5.html">Konu 5</a></li>
+                <li><a href="konu6.html">Konu 6</a></li>
+                <li><a href="konu7.html">Konu 7</a></li>
+                <li><a href="konu8.html">Konu 8</a></li>
+                <li><a href="konu9.html">Konu 9</a></li>
+                <li><a href="konu10.html">Konu 10</a></li>
+                <li><a href="konu11.html">Konu 11</a></li>
+                <li><a href="konu12.html">Konu 12</a></li>
+                <li><a href="konu13.html">Konu 13</a></li>
+                <li><a href="konu14.html">Konu 14</a></li>
+                <li><a href="konu15.html">Konu 15</a></li>
+            </ul>
+        </div>
+
+        <!-- Sağ taraf -->
+        <div class="side-container">
+            <img src="resim2.jpg" alt="Resim 2">
+        </div>
     </div>
 
     <script>
