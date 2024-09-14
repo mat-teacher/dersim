@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site İndeksi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Banner Ayarları */
+        .banner {
+            background-color: #4CAF50;
+            height: 15vh; /* Sayfanın %15'i kadar yükseklik */
+            width: 100%; /* Genişliği otomatik */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        /* Tablo Ayarları */
+        .table-container {
+            margin: 20px auto;
+            width: 60%; /* Sayfanın %60'ı kadar genişlik */
+            text-align: center;
+        }
+
+        .table-header {
+            font-size: 2rem;
+            font-weight: bold;
+            font-style: italic;
+            color: #4CAF50;
+            cursor: pointer;
+        }
+
+        .content-list {
+            display: none;
+            list-style-type: none;
+            margin-top: 10px;
+        }
+
+        .content-list li {
+            margin: 5px 0;
+        }
+
+        .content-list li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .content-list li a:hover {
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Banner -->
+    <div class="banner">
+        <h1>Site İndeksi</h1>
+    </div>
+
+    <!-- Tablo -->
+    <div class="table-container">
+        <div class="table-header" onclick="toggleMenu('menu7a')">7A</div>
+        <ul id="menu7a" class="content-list">
+            <!-- Konu 1'den 15'e kadar menü -->
+            <li><a href="konu1.html">Konu 1</a></li>
+            <li><a href="konu2.html">Konu 2</a></li>
+            <li><a href="konu3.html">Konu 3</a></li>
+            <li><a href="konu4.html">Konu 4</a></li>
+            <li><a href="konu5.html">Konu 5</a></li>
+            <li><a href="konu6.html">Konu 6</a></li>
+            <li><a href="konu7.html">Konu 7</a></li>
+            <li><a href="konu8.html">Konu 8</a></li>
+            <li><a href="konu9.html">Konu 9</a></li>
+            <li><a href="konu10.html">Konu 10</a></li>
+            <li><a href="konu11.html">Konu 11</a></li>
+            <li><a href="konu12.html">Konu 12</a></li>
+            <li><a href="konu13.html">Konu 13</a></li>
+            <li><a href="konu14.html">Konu 14</a></li>
+            <li><a href="konu15.html">Konu 15</a></li>
+        </ul>
+
+        <div class="table-header" onclick="toggleMenu('menu7b')">7B</div>
+        <ul id="menu7b" class="content-list">
+            <!-- Konu 1'den 15'e kadar menü -->
+            <li><a href="konu1.html">Konu 1</a></li>
+            <li><a href="konu2.html">Konu 2</a></li>
+            <li><a href="konu3.html">Konu 3</a></li>
+            <li><a href="konu4.html">Konu 4</a></li>
+            <li><a href="konu5.html">Konu 5</a></li>
+            <li><a href="konu6.html">Konu 6</a></li>
+            <li><a href="konu7.html">Konu 7</a></li>
+            <li><a href="konu8.html">Konu 8</a></li>
+            <li><a href="konu9.html">Konu 9</a></li>
+            <li><a href="konu10.html">Konu 10</a></li>
+            <li><a href="konu11.html">Konu 11</a></li>
+            <li><a href="konu12.html">Konu 12</a></li>
+            <li><a href="konu13.html">Konu 13</a></li>
+            <li><a href="konu14.html">Konu 14</a></li>
+            <li><a href="konu15.html">Konu 15</a></li>
+        </ul>
+
+        <div class="table-header" onclick="toggleMenu('menu8b')">8B</div>
+        <ul id="menu8b" class="content-list">
+            <!-- Konu 1'den 15'e kadar menü -->
+            <li><a href="konu1.html">Konu 1</a></li>
+            <li><a href="konu2.html">Konu 2</a></li>
+            <li><a href="konu3.html">Konu 3</a></li>
+            <li><a href="konu4.html">Konu 4</a></li>
+            <li><a href="konu5.html">Konu 5</a></li>
+            <li><a href="konu6.html">Konu 6</a></li>
+            <li><a href="konu7.html">Konu 7</a></li>
+            <li><a href="konu8.html">Konu 8</a></li>
+            <li><a href="konu9.html">Konu 9</a></li>
+            <li><a href="konu10.html">Konu 10</a></li>
+            <li><a href="konu11.html">Konu 11</a></li>
+            <li><a href="konu12.html">Konu 12</a></li>
+            <li><a href="konu13.html">Konu 13</a></li>
+            <li><a href="konu14.html">Konu 14</a></li>
+            <li><a href="konu15.html">Konu 15</a></li>
+        </ul>
+    </div>
+
+    <script>
+        function toggleMenu(menuId) {
+            var menu = document.getElementById(menuId);
+            if (menu.style.display === "none" || menu.style.display === "") {
+                menu.style.display = "block";
+            } else {
+                menu.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
