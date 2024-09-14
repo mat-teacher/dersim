@@ -175,4 +175,8 @@
             var allMenus = document.querySelectorAll('.content-list');
             allMenus.forEach(function(menu) {
                 if (menu.id === menuId) {
-                    menu.style.display = menu.style.display === "block" ? "none" :
+                    // Tıklanan menüyü aç/kapat
+                    menu.style.display = menu.style.display === "block" ? "none" : "block";
+                } else {
+                    // Diğer menüleri kapat
+                    menu.style.display = "none";
