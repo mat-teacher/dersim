@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="ISO-8859-9">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6. Sınıf Konuları</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Banner */
+        .banner {
+            width: 100%;
+            height: 15vh; /* Yükseklik %15 */
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        /* Resim kenar boşlukları */
+        .side-image {
+            width: 17%;
+            height: 85vh;
+            position: fixed;
+            top: 15vh;
+        }
+
+        .left-image {
+            left: 0;
+            background: url('resim1.jpg') no-repeat center center;
+            background-size: cover;
+        }
+
+        .right-image {
+            right: 0;
+            background: url('resim2.jpg') no-repeat center center;
+            background-size: cover;
+        }
+
+        /* Orta kaydırılabilir alan */
+        .content {
+            margin: 15vh 17%;
+            height: 85vh;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .content a {
+            display: block;
+            margin: 20px 0;
+            padding: 10px 0;
+            font-size: 20px;
+            background-color: #f0f0f0;
+            text-decoration: none;
+            color: black;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .content a:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Banner -->
+    <div class="banner">
+        6. Sınıf Matematik Konuları
+    </div>
+
+    <!-- Sol resim -->
+    <div class="side-image left-image"></div>
+
+    <!-- Sağ resim -->
+    <div class="side-image right-image"></div>
+
+    <!-- Orta kaydırılabilir içerik -->
+    <div class="content">
+        <a href="6_konu1.html">Konu 1</a>
+        <a href="6_konu2.html">Konu 2</a>
+        <a href="6_konu3.html">Konu 3</a>
+        <a href="6_konu4.html">Konu 4</a>
+        <a href="6_konu5.html">Konu 5</a>
+        <a href="6_konu6.html">Konu 6</a>
+        <a href="6_konu7.html">Konu 7</a>
+        <a href="6_konu8.html">Konu 8</a>
+        <a href="6_konu9.html">Konu 9</a>
+        <a href="6_konu10.html">Konu 10</a>
+        <a href="6_konu11.html">Konu 11</a>
+        <a href="6_konu12.html">Konu 12</a>
+        <a href="6_konu13.html">Konu 13</a>
+        <a href="6_konu14.html">Konu 14</a>
+        <a href="6_konu15.html">Konu 15</a>
+    </div>
+
+</body>
+</html>
