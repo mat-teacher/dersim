@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Etkileşimli Denklem Çözücü</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    #inputArea {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    #equationInput {
+      font-size: 24px;
+      padding: 10px;
+      width: 400px;
+    }
+    #startBtn {
+      padding: 10px 20px;
+      margin-left: 10px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    #workspace {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 300px;
+      border: 2px dashed #aaa;
+      background: white;
+      position: relative;
+      flex-wrap: wrap;
+    }
+    .term {
+      padding: 10px 20px;
+      margin: 10px;
+      background: #cce5ff;
+      border: 1px solid #004085;
+      border-radius: 8px;
+      font-size: 24px;
+      cursor: move;
+      user-select: none;
+      position: relative;
+    }
+    #equalSign {
+      font-size: 32px;
+      margin: 0 20px;
+    }
+    #actionArea {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .actionBtn {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Etkileşimli Denklem Çözücü</h1>
+  <div id="inputArea">
+    <input type="text" id="equationInput" placeholder="Örn: 4x + 2 = 3x - 5">
+    <button id="startBtn">Başla</button>
+  </div>
+  <div id="workspace"></div>
+  <div id="actionArea"></div>
+
+  <script>
+    const workspace = document.getElementById('workspace');
+    const actionArea = document.getElementById('actionArea');
+
+    document.getElementById('startBtn').onclick = () => {
+      workspace.innerHTML = '';
+      actionArea.innerHTML = '';
+      const equation = document.getElementById('equationInput').value;
+      if (!equation.includes('=')) {
+        alert('Lütfen geçerli bir denklem girin.');
+        return;
+      }
+      const [left, right] = equation.split('=').map(s => s.trim());
+      createTermBoxes(left, 'left');
+      const equal = document.createElement('div');
+      equal.id = 'equalSign';
+      equal.textContent = '=';
+      workspace.appendChild(equal);
+      createTermBoxes(right, 'right');
+    };
+
+    function createTermBoxes(side, position) {
+      const terms = side.match(/[+-]?\s*[^+-]+/g) || [];
+      terms.forEach(term => {
+        const box = document.createElement('div');
+        box.className = 'term';
+        box.textContent = term.trim();
+        box.setAttribute('draggable', true);
+        box.dataset.position = position;
+        workspace.appendChild(box);
+
+        box.addEventListener('dragstart', e => {
+          e.dataTransfer.setData('text/plain', box.textContent);
+          box.classList.add('dragging');
+          box.dataset.originalPosition = box.dataset.position;
+        });
+
+        box.addEventListener('dragend', () => {
+          box.classList.remove('dragging');
+        });
+
+        box.addEventListener('dragover', e => e.preventDefault());
+        box.addEventListener('drop', e => {
+          e.preventDefault();
+          const fromText = e.dataTransfer.getData('text/plain');
+          const toText = box.textContent;
+          if (areLikeTerms(fromText, toText)) {
+            const result = combineTerms(fromText, toText);
+            box.textContent = result;
+            document.querySelector(`.dragging`).remove();
+            checkSimplified();
+          }
+        });
+
+        workspace.addEventListener('drop', e => {
+          e.preventDefault();
+          const from = document.querySelector(`.dragging`);
+          const target = e.target;
+          if (!target.classList.contains('term')) {
+            const moved = from.textContent;
+            const oldSide = from.dataset.originalPosition;
+            const newSide = oldSide === 'left' ? 'right' : 'left';
+            from.dataset.position = newSide;
+            from.textContent = invertSign(moved);
+            checkSimplified();
+          }
+        });
+      });
+    }
+
+    function areLikeTerms(a, b) {
+      const v1 = a.replace(/[^a-zA-Z]/g, '');
+      const v2 = b.replace(/[^a-zA-Z]/g, '');
+      return v1 === v2;
+    }
+
+    function combineTerms(a, b) {
+      const k1 = parseFloat(a.replace(/[^-\d\.]/g, '')) || (a.includes('-') ? -1 : 1);
+      const k2 = parseFloat(b.replace(/[^-\d\.]/g, '')) || (b.includes('-') ? -1 : 1);
+      const v = b.replace(/[^a-zA-Z]/g, '');
+      const sum = k1 + k2;
+      return (sum === 0 ? '' : sum === 1 ? '' : sum === -1 ? '-' : sum) + v;
+    }
+
+    function invertSign(term) {
+      if (term.startsWith('-')) return term.slice(1);
+      if (term.startsWith('+')) return '-' + term.slice(1);
+      return '-' + term;
+    }
+
+    function checkSimplified() {
+      const terms = document.querySelectorAll('.term');
+      const sides = { left: [], right: [] };
+      terms.forEach(t => sides[t.dataset.position].push(t.textContent));
+      const leftX = sides.left.find(t => t.includes('x')) || '';
+      const rightX = sides.right.find(t => t.includes('x')) || '';
+      const leftNum = sides.left.find(t => !t.includes('x')) || '';
+      const rightNum = sides.right.find(t => !t.includes('x')) || '';
+
+      if ((leftX && rightNum && !rightX && !leftNum) || (rightX && leftNum && !leftX && !rightNum)) {
+        actionArea.innerHTML = '';
+        const btn = document.createElement('button');
+        btn.className = 'actionBtn';
+        btn.textContent = 'Çöz';
+        btn.onclick = () => {
+          let result;
+          if (leftX) {
+            const coef = parseFloat(leftX.replace(/[^-\d\.]/g, '')) || (leftX.startsWith('-') ? -1 : 1);
+            const value = parseFloat(rightNum);
+            result = `x = ${value / coef}`;
+          } else {
+            const coef = parseFloat(rightX.replace(/[^-\d\.]/g, '')) || (rightX.startsWith('-') ? -1 : 1);
+            const value = parseFloat(leftNum);
+            result = `x = ${value / coef}`;
+          }
+          actionArea.textContent = result;
+        };
+        actionArea.appendChild(btn);
+      }
+    }
+  </script>
+</body>
+</html>
